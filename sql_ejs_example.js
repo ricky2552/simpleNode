@@ -9,7 +9,7 @@ app.set('view engine', 'ejs');
 var connection = mysql.createConnection({
     host: '206.12.96.242',
     user: 'group3',
-    password: 'untanglingGroup03',
+    password: 'untanglingGroup3',
     database: 'group3DB'
 });
 connection.connect();
