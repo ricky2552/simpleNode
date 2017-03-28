@@ -47,7 +47,7 @@ app.post('/query', function(req, res) {
                 database: 'group3DB'
             });
             connection.connect();
-            var q = "'SELECT seller FROM books '" + req.body.queryStr + "'";
+            var q = 'SELECT seller FROM books ' + req.body.queryStr + "'";
             //console.log(q);
             connection.query(q, function(err, rows, fields) {
                 if (err) throw err;
