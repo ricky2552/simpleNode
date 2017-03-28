@@ -12,15 +12,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 // use res.render to load up an ejs view file
 var connection = mysql.createConnection({
     host: '206.12.96.242',
-    user: 'group0',
-    password: 'untanglingGroup0',
-    database: 'group0DB'
+    user: 'group3',
+    password: 'untanglingGroup3',
+    database: 'group3DB'
 });
 connection.connect();
 
 var listings;
 
-connection.query('SELECT * FROM stuff', function(err, rows, fields) {
+connection.query('SELECT * FROM books', function(err, rows, fields) {
     if (err) throw err;
 
     listings = rows;
@@ -42,12 +42,12 @@ app.post('/query', function(req, res) {
     async.series([function(callback) {
             var connection = mysql.createConnection({
                 host: '206.12.96.242',
-                user: 'group0',
-                password: 'untanglingGroup0',
-                database: 'group0DB'
+                user: 'group3',
+                password: 'untanglingGroup3',
+                database: 'group3DB'
             });
             connection.connect();
-            var q = 'SELECT * FROM stuff WHERE location LIKE "' + req.body.queryStr + '"';
+            var q = 'SELECT * FROM subject, title, seller FROM books' + req.body.queryStr + '"';
             //console.log(q);
             connection.query(q, function(err, rows, fields) {
                 if (err) throw err;
@@ -88,6 +88,6 @@ app.get('/about', function(req, res) {
     });
 });
 
-app.listen(8000, function() {
-    console.log('Example app listening on port 8000!')
+app.listen(8003, function() {
+    console.log('Example app listening on port 8003!')
 })
