@@ -38,7 +38,7 @@ app.get('/', function(req, res) {
 //query
 app.post('/query', function(req, res) {
 
-    //console.log(req.body);
+    console.log(req.body);
     async.series([function(callback) {
             var connection = mysql.createConnection({
                 host: '206.12.96.242',
@@ -47,7 +47,7 @@ app.post('/query', function(req, res) {
                 database: 'group3DB'
             });
             connection.connect();
-            var q = 'SELECT subject, title, seller FROM books "' + req.body.queryStr + '"';
+            var q = "'SELECT subject FROM books '" + req.body.queryStr + "'";
             //console.log(q);
             connection.query(q, function(err, rows, fields) {
                 if (err) throw err;
